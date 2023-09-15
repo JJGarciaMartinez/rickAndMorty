@@ -27,7 +27,7 @@ function App() {
   }
 
   useEffect(() => {
-    !access && navigate("/home");
+    !access && navigate("/");
   }, [access]);
 
   const [characters, setCharacters] = useState([]);
