@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
-import "./styles.css";
 import { addFav, removeFav } from "../../redux/actions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
+import { Heart } from "@phosphor-icons/react";
+import "./styles.css";
 
 function Card(props) {
   // props = { myFavorites, addFav, removeFav, id, name, origin, species, gender, image }
@@ -31,11 +32,11 @@ function Card(props) {
     <div className="card">
       {isFav ? (
         <button onClick={handleFavorite} className="favorite">
-          ❤️
+          <Heart size={20} weight="fill" className="heartFill" />
         </button>
       ) : (
         <button onClick={handleFavorite} className="favorite">
-          🤍
+          <Heart size={20} />
         </button>
       )}
       <button onClick={props.onClose} className="close">

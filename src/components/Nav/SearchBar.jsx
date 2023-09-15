@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
+import { Plus } from "@phosphor-icons/react";
 
 export default function SearchBar(props) {
   const [id, setId] = useState("");
@@ -20,10 +21,14 @@ export default function SearchBar(props) {
         name="search"
         id="search"
         value={id}
+        placeholder="Ingresa un ID"
         onChange={handleChange}
       />
 
-      <button onClick={handleClick}>Agregar</button>
+      <button onClick={handleClick}>
+        <Plus size={15} />
+        Agregar
+      </button>
     </div>
   );
 }

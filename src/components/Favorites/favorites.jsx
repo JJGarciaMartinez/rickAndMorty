@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "../Cards/Card";
-import "./styles.css";
+import Card from "../Cards/Card.jsx";
+import "../Cards/styles.css";
 import { connect } from "react-redux";
 
 function Favorites({ myFavorites, onClose }) {
@@ -14,7 +14,7 @@ function Favorites({ myFavorites, onClose }) {
           //  status={character.status}
           species={character.species}
           gender={character.gender}
-          origin={character.origin.name}
+          origin={character.name}
           image={character.image}
           onClose={() => onClose(character.id)}
         />
