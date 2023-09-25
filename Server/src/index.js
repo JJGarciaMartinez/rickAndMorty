@@ -1,35 +1,25 @@
-const http = require("http");
-const characters = require("./utils/data");
-
+const express = require("express");
+const server = express();
+const router = require("./routes/index");
+const morgan = require("morgan");
 const PORT = 3001;
 
-http
-  .createServer((req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
+server.use(express.json());
 
-    if (req.url.includes("/rickandmorty/character")) {
-      const id = req.url.split("/").pop();
+server.use(morgan("dev"));
 
-      const character = characters.find((char) => char.id === Number(id));
+server.use("/rickandmorty", router);
 
-      if (character) {
-        return res
-          .writeHead(200, {
-            "Content-Type": "application/json",
-          })
-          .end(JSON.stringify(character));
-      } else {
-        return res
-          .writeHead(200, {
-            "Content-Type": "application/json",
-          })
-          .end(JSON.stringify({ message: "Character not found" }));
-      }
-    }
-    return res
-      .writeHead(404, {
-        "Content-Type": "application/json",
-      })
-      .end(JSON.stringify({ message: "Page not found" }));
-  })
-  .listen(PORT, "127.0.0.1");
+server.listen(PORT, () => {
+  console.log("Server raised in port: " + PORT);
+});
