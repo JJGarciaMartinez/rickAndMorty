@@ -6,8 +6,14 @@
   animation-timing-function: ease;
 }
 
-.cards {
+.filters {
+  position: relative;
   top: 50px;
+  margin: 20px;
+}
+
+.cards {
+  top: 60px;
   margin-bottom: 50px;
   position: relative;
   display: flex;
@@ -29,13 +35,14 @@
   .card-link {
     color: #222020;
     position: absolute;
-    bottom: 3.2rem;
+    bottom: 3.25rem;
     right: 2rem;
     padding: 0.5rem;
     border-radius: 10px;
     background-color: rgba(245, 245, 245, 0.411);
     backdrop-filter: blur(10px);
     transition: 0.6s;
+    font-size: 1.5rem;
 
     &:hover {
       filter: drop-shadow(0 0 2px #88ff64aa);
@@ -64,10 +71,10 @@
     bottom: 0.5rem;
     left: 5rem;
   }
-  .card-name {
+  .card-origin {
     font-size: 1rem;
     font-weight: bold;
-    margin: 1rem;
+    max-width: 300px;
   }
 
   .favorite {

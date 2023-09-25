@@ -14,16 +14,15 @@ function App() {
   const navigate = useNavigate(); // Se guarda el path actual y redirecciona
   //   console.log(navigate);
   const [access, setAccess] = useState(false);
-  const EMAIL = "ejemplo@gmail.com";
-  const PASSWORD = "123456ab";
 
   function login(userData) {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate("/home"); // Redirecciona a /home
-    } else {
-      alert("Usuario o contraseña incorrectos");
-    }
+    const { email, password } = userData;
+    const URL = "http://localhost:3001/rickandmorty/login/";
+    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+      const { access } = data;
+      setAccess(data);
+      access && navigate("/home");
+    });
   }
 
   useEffect(() => {
