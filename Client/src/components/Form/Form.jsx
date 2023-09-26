@@ -26,7 +26,7 @@ export default function Form(props) {
         [name]: value,
       })
     );
-    console.log(errors);
+    // console.log(errors);
   };
 
   const handleSubmit = (e) => {

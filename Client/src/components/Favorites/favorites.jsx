@@ -28,11 +28,11 @@ function Favorites({ myFavorites, onClose }) {
   return (
     <div>
       <div className="filters">
-        <select name="order" onChange={handleOrder}>
+        <select name="order" onChange={handleOrder} className="options1">
           <option value="A">Ascendente</option>
           <option value="D">Descendente</option>
         </select>
-        <select name="filter" onChange={handleFilter}>
+        <select name="filter" onChange={handleFilter} className="options2">
           <option value="All">All</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
