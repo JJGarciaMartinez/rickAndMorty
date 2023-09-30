@@ -3,6 +3,9 @@ const session = require("supertest");
 const agent = session(app);
 
 describe("Test de RUTAS", () => {
+  const char1 = { id: 1, name: "Rick" };
+  const char2 = { id: 2, name: "Morty" };
+
   describe("GET /rickandmorty/character/:id", () => {
     it("Responde con status: 200", async () => {
       const response = await agent.get("/rickandmorty/character/1");
@@ -46,18 +49,31 @@ describe("Test de RUTAS", () => {
   });
 
   describe("POST /rickandmorty/fav", () => {
-    const char1 = {
-      id1: 1,
-      name1: "Rick",
-    };
-    const char2 = {
-      id: 2,
-      name: "Morty",
-    };
-    it("Devuelve un JSON con lo enviado por body"),
-      async () => {
-        const response = await agent.post("/rickandmorty/fav").send(char1);
-        expect(response.body).toContainEqual(char1);
-      };
+    it("Devuelve un JSON con lo enviado por body", async () => {
+      const response = await agent.post("/rickandmorty/fav").send(char1);
+      // expect(response.body).toEqual([char1]);
+      // console.log(response.body);
+      expect(response.body).toContainEqual(char1);
+    });
+    it("Devuelve un JSON con lo enviado por body, incluyendo los previamente Posteados", async () => {
+      const response = await agent.post("/rickandmorty/fav").send(char2);
+      //   console.log(response.body);
+      expect(response.body).toContainEqual(char2);
+      expect(response.body).toContainEqual(char2);
+    });
+  });
+
+  describe("DELETE /rickandmorty/fav/:id", () => {
+    it("Si no hay personaje a eliminar, devuelve el array completo de favoritos", async () => {
+      const response = await agent.delete("/rickandmorty/fav/5");
+      //   console.log(response.body);
+      expect(response.body).toContainEqual(char1);
+      expect(response.body).toContainEqual(char2);
+    });
+    it("Si el personaje existe en favoritos, lo elimina", async () => {
+      const response = await agent.delete("/rickandmorty/fav/1");
+      //   console.log(response.body);
+      expect(response.body).not.toContainEqual(char1);
+    });
   });
 });
