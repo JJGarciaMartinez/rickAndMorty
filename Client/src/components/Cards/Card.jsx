@@ -36,7 +36,7 @@ function Card(props) {
         </button>
       ) : (
         <button onClick={handleFavorite} className="favorite">
-          <Heart size={20} />
+          <Heart size={20} className="heart" />
         </button>
       )}
       <button onClick={props.onClose} className="close">

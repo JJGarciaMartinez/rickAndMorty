@@ -1,7 +1,5 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -42,5 +40,131 @@
 }
 
 .App {
-  text-align: center;
+  position: relative;
+  margin-top: 125px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  min-width: calc(100vw - 0.99em);
+}
+
+.footer {
+  margin-top: auto;
+  width: 100%;
+  background-color: #202329;
+
+  & section {
+    font-weight: bold;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-flow: column;
+    position: relative;
+    background: rgb(32, 35, 41);
+    color: rgb(158, 158, 158);
+    padding: 4rem 0;
+    min-height: calc(120px);
+    width: 100%;
+    font-size: 1rem;
+
+    .count {
+      display: flex;
+      flex-direction: column;
+      color: rgb(158, 158, 158);
+      gap: 1rem;
+
+      .characters {
+        .total:hover {
+          color: rgb(0, 119, 255);
+        }
+      }
+
+      & a {
+        color: #f1f1f1;
+        border-bottom: 1px solid rgb(0, 119, 255);
+        transition: 0.2s;
+
+        &:hover {
+          border-bottom: 0;
+          color: rgb(0, 119, 255);
+        }
+      }
+    }
+
+    .icons {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      & img {
+        width: 50px;
+        filter: hue-rotate(0deg) saturate(0%) brightness(62%);
+        transition: 0.5s;
+
+        &:hover {
+          filter: hue-rotate(0) saturate(0%) brightness(94.5%);
+        }
+      }
+
+      .icon {
+        color: rgb(158, 158, 158);
+        transition: 0.5s;
+
+        &:hover {
+          color: rgb(241, 241, 241);
+        }
+      }
+    }
+
+    .credits {
+      margin-top: 1.6rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      gap: 1.5rem;
+
+      .code {
+        display: flex;
+        align-items: center;
+
+        gap: 5px;
+
+        & a {
+          text-decoration: none;
+          color: #f1f1f1;
+          transition: 0.52s;
+
+          &:hover {
+            border-bottom: 0;
+            color: rgb(0, 119, 255);
+          }
+        }
+      }
+
+      .copyright {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+    }
+  }
+}
+
+.background {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+  object-fit: cover;
+  background-color: #272b33;
+  & img {
+    opacity: 0.7;
+  }
 }

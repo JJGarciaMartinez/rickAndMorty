@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./details.css";
 
 export default function Detail() {
   const { id } = useParams();
@@ -20,15 +21,26 @@ export default function Detail() {
   }, [id]);
 
   return (
-    <div>
-      <h1>Detail</h1>
-      <h1> {character?.name}</h1>
-      <h3>ID: {character?.id}</h3>
-      <h2>Status: {character?.status}</h2>
-      <h2>Specie: {character?.species}</h2>
-      <h2>Gender: {character?.gender}</h2>
-      <h2>Origin: {character?.origin?.name}</h2>
+    <div className="detail">
       <img src={character?.image} alt={character.name} />
+      <span className="info">
+        <a
+          href={`http://localhost:3001/rickandmorty/character/${id}`}
+          className="name"
+        >
+          {character?.name}
+        </a>
+        <h2 className="statusAndSpecies">{`${character?.status}  -  ${character?.species}`}</h2>
+        <h3 className="id">
+          Character ID: <p>{character?.id}</p>
+        </h3>
+        <h2 className="gender">
+          Gender: <p>{character?.gender}</p>
+        </h2>
+        <h2 className="origin">
+          Origin: <p>{character?.origin?.name}</p>
+        </h2>
+      </span>
     </div>
   );
 }

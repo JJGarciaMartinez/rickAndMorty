@@ -1,35 +1,40 @@
 /* eslint-disable no-case-declarations */
-import { ADD_FAV, FILTER, ORDER, REMOVE_FAV } from "./action-types";
+import { ADD_FAV, FILTER, ORDER, REMOVE_FAV, ERROR } from "./action-types";
 
 const initialState = {
   myFavorites: [], //* [ {rick}, {morty, id: 2}, {beth} ]
   allCharacters: [],
   user: "",
+  errors: "",
 };
 
 export default function reducer(state = initialState, { type, payload }) {
   //* action = { type, payload }
   // console.log(typeof payload)
   switch (type) {
-    case "ADD_FAV":
+    case ADD_FAV:
       return { ...state, myFavorites: payload, allCharacters: payload };
 
-    case "REMOVE_FAV":
+    case REMOVE_FAV:
       return { ...state, myFavorites: payload, allCharacters: payload };
 
     case FILTER:
-      if (payload === "All")
+      if (payload === "All") {
+        const allCharactersUpdated = state.allCharacters;
         return {
           ...state,
-          myFavorites: state.allCharacters,
+          myFavorites: allCharactersUpdated,
         };
-      const filteredCharacters = state.allCharacters.filter(
-        (char) => char.gender === payload
-      );
-      return {
-        ...state,
-        myFavorites: filteredCharacters,
-      };
+      } else {
+        const copy = [...state.allCharacters];
+        const filteredCharacters = copy.filter(
+          (char) => char.gender === payload
+        );
+        return {
+          ...state,
+          myFavorites: filteredCharacters,
+        };
+      }
     case ORDER:
       let orderCopy = [...state.allCharacters];
       if (payload === "A") {
@@ -46,6 +51,11 @@ export default function reducer(state = initialState, { type, payload }) {
       return {
         ...state,
         myFavorites: orderCopy,
+      };
+    case ERROR:
+      return {
+        ...state,
+        errors: payload,
       };
     default:
       return { ...state };
