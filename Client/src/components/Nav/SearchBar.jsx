@@ -27,7 +27,6 @@ export default function SearchBar(props) {
 
       <button onClick={handleClick}>
         <Plus size={15} />
-        Agregar
       </button>
     </div>
   );

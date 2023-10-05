@@ -11,7 +11,6 @@ import Nav from "./components/Nav/Nav.jsx";
 import Favorites from "./components/Favorites/favorites.jsx";
 import Footer from "./components/Footer/footer";
 import background from "./assets/2k_stars_milky_way.jpg";
-import { Code, Copyright } from "@phosphor-icons/react";
 
 function App() {
   const navigate = useNavigate(); // Se guarda el path actual y redirecciona
@@ -35,7 +34,7 @@ function App() {
   }
 
   useEffect(() => {
-    !access && navigate("/home");
+    !access && navigate("/");
   }, [access]);
 
   const location = useLocation();
@@ -80,40 +79,64 @@ function App() {
     fetchCharacterCount();
   }, []);
 
+  const onRandom = () => {
+    const id = Math.floor(Math.random() * characterCount);
+    axios
+      .get(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(({ data }) => {
+        if (data) {
+          const existChar = characters.find((char) => char.id === data.id);
+          if (!existChar) {
+            setCharacters([...characters, data]);
+          } else {
+            //* Se ejecuta cuando ya existe un personaje
+            onRandom();
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener personaje ", error);
+      });
+  };
+
   return (
     <>
-      <div className="App">
-        {
-          location.pathname !== "/" && (
-            <Nav onSearch={onSearch} logOut={logOut} />
-          )
-          // '/' false => X
-          // '/algoMas...' true => Evaluar la segunda parte
-        }
+      <div className="main">
         <Routes>
           <Route path="/" element={<Form login={login} />} />
-          <Route
-            path="/home"
-            element={<Cards characters={characters} onClose={onClose} />}
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/favorites" element={<Favorites onClose={onClose} />} />
-          {/* <Cards characters={characters} onClose={onClose} /> */}
         </Routes>
-
         <picture className="background">
-          <img src={background} alt="" />
+          <section className="space"></section>
         </picture>
-        {location.pathname !== "/" && (
+      </div>
+      {location.pathname !== "/" && (
+        <div className="App">
+          <Nav onSearch={onSearch} logOut={logOut} onRandom={onRandom} />
+          <Routes>
+            <Route
+              path="/home"
+              element={<Cards characters={characters} onClose={onClose} />}
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route
+              path="/favorites"
+              element={<Favorites onClose={onClose} />}
+            />
+            {/* <Cards characters={characters} onClose={onClose} /> */}
+          </Routes>
+
+          <picture className="background">
+            <img src={background} alt="" />
+          </picture>
           <footer className="footer">
             <Footer
               characterCount={characterCount}
               setCharacterCount={setCharacterCount}
             />
           </footer>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }

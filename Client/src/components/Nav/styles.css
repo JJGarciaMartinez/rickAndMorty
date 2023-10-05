@@ -10,18 +10,32 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 15px;
   position: fixed;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgba(240, 240, 240, 0.85);
   border-radius: 0 0 20px 20px;
   box-shadow: 0px 0px 10px 0px #c4c4c4;
   backdrop-filter: blur(10px);
   z-index: 1000;
+  padding: 15px 4rem 15px;
+
+  .links {
+    display: flex;
+    gap: 2rem;
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .logOut {
+      margin-left: 70px;
+    }
+  }
 
   .home button {
     border-radius: 30px;
@@ -59,32 +73,46 @@
 
   .about button {
     border-radius: 30px;
-    background-color: #757575;
+    background-color: rgb(39, 43, 51);
     color: #f4f4f4;
     transition: 0.5s;
     box-shadow: 0px 1px 2px 1px #979797;
 
     &:hover {
-      background-color: #424242;
+      background-color: rgb(64, 70, 82);
     }
     &:focus {
       background-color: #5c5c5c;
     }
   }
+}
+.random button {
+  border-radius: 20px;
+  background-color: rgb(39, 43, 51);
+  color: #f4f4f4;
+  transition: 0.5s;
+  font-size: 15px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0px 1px 2px 1px #979797;
 
-  .logOut button {
-    border-radius: 30px;
-    background-color: #757575;
-    color: #f4f4f4;
-    transition: 0.5s;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 1px 2px 1px #979797;
+  &:hover {
+    background-color: rgb(64, 70, 82);
+  }
+}
+.logOut button {
+  border-radius: 30px;
+  background-color: rgb(39, 43, 51);
+  color: #f4f4f4;
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 1px 2px 1px #979797;
 
-    &:hover {
-      background-color: rgb(218, 218, 218);
-      color: #242424;
-    }
+  &:hover {
+    background-color: rgb(64, 70, 82);
   }
 }
 
@@ -93,26 +121,37 @@
   align-items: center;
   gap: 5px;
   & input {
-    height: 60%;
+    height: 2rem;
     border-radius: 10px;
-    border: 1px solid #c4c4c4;
     padding: 0px 10px 0px;
+    border: 1px solid #c4c4c4;
+    background-color: rgb(65, 72, 87);
+
+    &:hover {
+      background-color: rgb(87, 94, 109);
+    }
+
+    &:focus {
+      background-color: rgb(87, 94, 109);
+    }
+    &::placeholder {
+      color: rgb(212, 212, 212);
+    }
   }
   & button {
     border-radius: 20px;
-    background-color: #757575;
+    background-color: rgb(39, 43, 51);
     color: #f4f4f4;
     transition: 0.5s;
     font-size: 15px;
-    padding: 10px 5px 10px;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
     gap: 5px;
     box-shadow: 0px 1px 2px 1px #979797;
 
     &:hover {
-      background-color: rgb(218, 218, 218);
-      color: #242424;
+      background-color: rgb(64, 70, 82);
     }
   }
 }

@@ -15,7 +15,9 @@ body {
   flex-direction: column;
   align-items: center;
   color: white;
-  background-color: rgb(80, 79, 79);
+  background-color: rgb(255, 255, 255, 0.55);
+  box-shadow: 0px 0px 20px 0px rgb(209, 209, 209);
+  backdrop-filter: blur(3px);
   border-radius: 20px;
   padding: 2rem;
 
@@ -23,7 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(48 47 47);
+    background-color: rgb(32, 35, 41);
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.61);
     padding: 25px;
     border-radius: 10px;
     gap: 5px;
@@ -35,19 +38,28 @@ body {
     filter: brightness(1.1);
     mix-blend-mode: multiply;
     object-fit: contain;
+    filter: drop-shadow(0 0 5px rgb(65, 72, 87));
   }
   & input {
     width: 90%;
-    padding: 5px;
+    padding: 10px;
     height: 2rem;
     border-radius: 10px;
     border: none;
-    background-color: rgb(68, 67, 67);
-    color: white;
+    background-color: rgb(65, 72, 87);
+    color: rgb(241, 241, 241);
     font-size: 1rem;
+    transition: 0.6s;
+
+    &:hover {
+      background-color: rgb(87, 94, 109);
+    }
 
     &:focus {
-      background-color: rgb(92, 92, 92);
+      background-color: rgb(87, 94, 109);
+    }
+    &::placeholder {
+      color: rgb(212, 212, 212);
     }
   }
   & h1 {
@@ -55,12 +67,24 @@ body {
     margin: 3rem;
   }
   & label {
-    font-size: 1.5rem;
+    margin-top: 10px;
+    font-size: 1.4rem;
+  }
+  & button {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    padding: 0.5em 3.5em;
+    background-color: rgb(51, 58, 73);
+    transition: 0.3s;
+
+    &:hover {
+      background-color: rgb(44, 50, 63);
+    }
   }
 }
 
 .error {
-  font-size: 15px;
+  font-size: 0.9rem;
   margin: 1px;
-  color: red;
+  color: rgb(0, 119, 255);
 }

@@ -39,7 +39,7 @@ export default function Form(props) {
       <img src={Logo} alt="Rick and Morty API logo" />
       <h1>Login</h1>
       <form action="" onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Email</label>
         <input
           type="text"
           name="email"
@@ -49,7 +49,7 @@ export default function Form(props) {
         />
         {errors.email && <p className="error">{errors.email}</p>}
 
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"
@@ -59,11 +59,7 @@ export default function Form(props) {
         />
         {errors.password && <p className="error">{errors.password}</p>}
 
-        <button
-          type="submit"
-          style={{ marginTop: "15px" }}
-          disabled={errors.email || errors.password}
-        >
+        <button type="submit" disabled={errors.email || errors.password}>
           Entrar
         </button>
       </form>
